@@ -32,3 +32,4 @@ public class EmployeesQuery implements ResultCommandInterface<List<Employee>> {
 		this.employeeRepository = new EmployeeRepository();
 	}
 }
+

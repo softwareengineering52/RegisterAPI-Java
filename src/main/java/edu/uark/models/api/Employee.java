@@ -23,7 +23,6 @@ public class Employee {
 		this.lastname = lastname;
 		return this;
 	}
-	
 
 	private int record_id;
 	public int getrecord_id() {

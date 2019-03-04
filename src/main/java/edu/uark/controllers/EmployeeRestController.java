@@ -18,12 +18,11 @@ import edu.uark.commands.employees.EmployeeUpdateCommand;
 import edu.uark.commands.employees.EmployeesQuery;
 import edu.uark.models.api.Employee;
 
-// 2.4 (1)
 
 @RestController
 @RequestMapping(value = "/api/employee")
 public class EmployeeRestController {
-	// 2.4 (3)
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<Employee> getEmployees() {
 		return (new EmployeesQuery()).execute();
@@ -36,15 +35,13 @@ public class EmployeeRestController {
 			execute();
 	}
 	
-	// 2.4 (3)
-	@RequestMapping(value = "/bylookupcode/{employeeLookupCode}", method = RequestMethod.GET)
-	public Employee getEmployeeByLookupCode(@PathVariable String employeeLookupCode) {
-		return (new EmployeeByLookupCodeQuery()).
-			setLookupCode(employeeLookupCode).
+	@RequestMapping(value = "/byrecordid/{employeeRecordID}", method = RequestMethod.GET)
+	public Employee getEmployeeByRecordID(@PathVariable String employeeRecordID) {
+		return (new EmployeeByRecordIDQuery()).
+			setRecordID(employeeRecordID).
 			execute();
 	}
 	
-	// 2.5 (1) (2)
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public Employee createEmployee(@RequestBody Employee employee) {
 		return (new EmployeeCreateCommand()).
@@ -68,7 +65,6 @@ public class EmployeeRestController {
 	}
 
 	
-	// 2.4 (2)
 	@ResponseBody
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test() {

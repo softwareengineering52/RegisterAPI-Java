@@ -54,6 +54,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 	
 	public Employee synchronize(Employee apiEmployee) {
 		this.setCount(apiEmployee.getCount());
+		
 		this.setLookupCode(apiEmployee.getLookupCode());
 		
 		apiEmployee.setId(this.getId());

@@ -14,7 +14,7 @@ public class EmployeeQuery implements ResultCommandInterface<Employee> {
 	public Employee execute() {
 		EmployeeEntity employeeEntity = this.employeeRepository.get(this.employeeId);
 		if (employeeEntity != null) {
-			return new Pmployee(employeeEntity);
+			return new Employee(employeeEntity);
 		} else {
 			throw new NotFoundException("Employee");
 		}
@@ -43,3 +43,4 @@ public class EmployeeQuery implements ResultCommandInterface<Employee> {
 		this.employeeRepository = new EmployeeRepository();
 	}
 }
+

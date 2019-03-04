@@ -10,22 +10,22 @@ import edu.uark.models.entities.EmployeeEntity;
 import edu.uark.models.repositories.EmployeeRepository;
 import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 
-// 2.5 (1) (4)
+
 
 public class EmployeeCreateCommand implements ResultCommandInterface<Employee> {
 	@Override
 	public Employee execute() {
 		//Validations
-		if (StringUtils.isBlank(this.apiEmployee.getLookupCode())) {
-			throw new UnprocessableEntityException("lookupcode");
+		if (StringUtils.isBlank(this.apiEmployee.getRecordID())) {
+			throw new UnprocessableEntityException("recordid");
 		}
 
-		EmployeeEntity employeeEntity = this.employeeRepository.byLookupCode(this.apiEmployee.getLookupCode());
+		EmployeeEntity employeeEntity = this.employeeRepository.byRecordID(this.apiEmployee.getRecordID());
 		if (employeeEntity != null) {
-			throw new ConflictException("lookupcode"); //Lookupcode already defined for another employee.
+			throw new ConflictException("recordid"); //recordid already defined for another employee.
 		}
 		
-		//No ENTITY object was returned from the database, thus the API object's lookupcode must be unique.
+		//No ENTITY object was returned from the database, thus the API object's recordid must be unique.
 		employeeEntity = new EmployeeEntity(apiEmployee); //Create a new ENTITY object from the API object details.
 		employeeEntity.save(); //Write, via an INSERT, the new record to the database.
 		
@@ -58,3 +58,4 @@ public class EmployeeCreateCommand implements ResultCommandInterface<Employee> {
 		this.employeeRepository = new EmployeeRepository();
 	}
 }
+
