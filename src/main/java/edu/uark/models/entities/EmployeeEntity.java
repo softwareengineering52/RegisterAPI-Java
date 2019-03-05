@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,7 +23,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		this.manager = rs.getString(EmployeeFieldNames.MANAGER);
 		this.password = rs.getString(EmployeeFieldNames.PASSWORD);
 		//this.created_on = rs.getString(EmployeeFieldNames.CREATED_ON);
-		this.record_id = rs.getInt(EmployeeFieldNames.RECORD_ID);
+		//this.record_id = rs.get(EmployeeFieldNames.RECORD_ID);
 		
 	}
 
@@ -35,7 +36,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		record.put(EmployeeFieldNames.MANAGER, this.manager);
 		record.put(EmployeeFieldNames.PASSWORD, this.password);
 		//record.put(EmployeeFieldNames.CREATED_ON, this.created_on);		
-		record.put(EmployeeFieldNames.RECORD_ID, this.record_id);
+		//record.put(EmployeeFieldNames.RECORD_ID, this.record_id);
 		return record;
 	}
 
@@ -64,18 +65,18 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		return this;
 	}
 
-	private int record_id;
-	public int getRecord_ID() {
-		return this.record_id;
-	}
-	public EmployeeEntity setRecord_ID(int record_id) {
-		if (this.record_id != record_id) {
-			this.record_id = record_id;
-			this.propertyChanged(EmployeeFieldNames.RECORD_ID);
-		}
-		
-		return this;
-	}
+//	private UUID record_id;
+//	public UUID getRecord_ID() {
+//		return this.record_id;
+//	}
+//	public EmployeeEntity setRecord_ID(UUID record_id) {
+//		if (this.record_id != record_id) {
+//			this.record_id = record_id;
+//			this.propertyChanged(EmployeeFieldNames.RECORD_ID);
+//		}
+//		
+//		return this;
+//	}
 
 	private String password;
 	public String getPassword() {
@@ -87,16 +88,15 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 	}
 	
 	public Employee synchronize(Employee apiEmployee) {
-		//this.setCount(apiEmployee.getRecord_ID());
+		this.setFirstName(apiEmployee.getFirstName());
 		
-		this.setRecord_ID(apiEmployee.getRecord_ID());
+		apiEmployee.setRecord_ID(this.getRecord_ID());
 		
-		//apiEmployee.setId(this.getId());
 		apiEmployee.setCreatedOn(this.getCreatedOn());
 		//this.setCreatedOn(this.getCreatedOn());
 		return apiEmployee;
 	}
-	
+
 	public EmployeeEntity() {
 		super(DatabaseTable.EMPLOYEE);
 		this.first_name = StringUtils.EMPTY;
@@ -106,7 +106,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		this.manager = StringUtils.EMPTY;
 		this.password = StringUtils.EMPTY;
 		//this.created_on = StringUtils.EMPTY;
-		this.record_id = -1;		
+		//this.record_id = null;		
 		
 	}
 	
@@ -120,6 +120,6 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		this.manager = apiEmployee.getManager();
 		this.password = apiEmployee.getPassword();
 		//this.created_on = apiEmployee.getCreatedOn();
-		this.record_id = apiEmployee.getRecord_ID();
+		//this.record_id = apiEmployee.getRecord_ID();
 	}
 }

@@ -11,7 +11,7 @@ import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 public class EmployeeDeleteCommand implements VoidCommandInterface {
 	@Override
 	public void execute() {
-		EmployeeEntity employeeEntity = this.employeeRepository.get(this.employeeId);
+		EmployeeEntity employeeEntity = this.employeeRepository.get(this.employee_id);
 		if (employeeEntity == null) { //No record with the associated record ID exists in the database.
 			throw new NotFoundException("Employee");
 		}
@@ -20,12 +20,12 @@ public class EmployeeDeleteCommand implements VoidCommandInterface {
 	}
 
 	//Properties
-	private UUID employeeId;
-	public UUID getEmployeeId() {
-		return this.employeeId;
+	private int employee_id;
+	public int getEmployee_ID() {
+		return this.employee_id;
 	}
-	public EmployeeDeleteCommand setEmployeeId(UUID employeeId) {
-		this.employeeId = employeeId;
+	public EmployeeDeleteCommand setEmployee_ID(int employee_id) {
+		this.employee_id = employee_id;
 		return this;
 	}
 	

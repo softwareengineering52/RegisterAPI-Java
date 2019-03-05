@@ -1,6 +1,6 @@
 package edu.uark.commands.employees;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.UUID;
 
 import edu.uark.commands.ResultCommandInterface;
 import edu.uark.controllers.exceptions.NotFoundException;
@@ -15,11 +15,7 @@ import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 public class EmployeeByRecordIDQuery implements ResultCommandInterface<Employee> {
 	@Override
 	public Employee execute() {
-		if (StringUtils.isBlank(this.recordID)) {
-			throw new UnprocessableEntityException("recordid");
-		}
-		
-		EmployeeEntity employeeEntity = this.employeeRepository.byRecordID(this.recordID);
+		EmployeeEntity employeeEntity = this.employeeRepository.byRecord_ID(this.record_id);
 		if (employeeEntity != null) {
 			return new Employee(employeeEntity);
 		} else {
@@ -28,16 +24,16 @@ public class EmployeeByRecordIDQuery implements ResultCommandInterface<Employee>
 	}
 
 	//Properties
-	private String recordID;
-	public String getRecordID() {
-		return this.recordID;
+	private UUID record_id;
+	public UUID getRecord_ID() {
+		return this.record_id;
 	}
-	public EmployeeCodeQuery setRecordID(String recordID) {
-		this.recordID = recordID;
+	public EmployeeByRecordIDQuery setRecord_ID(UUID record_id) {
+		this.record_id = record_id;
 		return this;
 	}
 	
-	private EmployeeRepositoryInterface EmployeeRepository;
+	private EmployeeRepositoryInterface employeeRepository;
 	public EmployeeRepositoryInterface getEmployeeRepository() {
 		return this.employeeRepository;
 	}

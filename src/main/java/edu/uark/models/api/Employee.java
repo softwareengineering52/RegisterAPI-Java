@@ -1,7 +1,7 @@
 package edu.uark.models.api;
 
 import java.time.LocalDateTime;
-
+import java.util.UUID;
 
 import edu.uark.models.entities.EmployeeEntity;
 
@@ -24,11 +24,11 @@ public class Employee {
 		return this;
 	}
 
-	private int record_id;
-	public int getRecord_ID() {
+	private UUID record_id;
+	public UUID getRecord_ID() {
 		return this.record_id;
 	}
-	public Employee setRecord_Id(int record_id) {
+	public Employee setRecord_ID(UUID record_id) {
 		this.record_id = record_id;
 		return this;
 	}
@@ -80,7 +80,7 @@ public class Employee {
 	
 	public Employee() {
 		this.employee_id = -1;
-		this.record_id = -1;
+		this.record_id = null;
 		this.active_inactive = "";
 		this.password = "";
 		this.first_name = "";
@@ -97,7 +97,7 @@ public class Employee {
 		this.manager = employeeEntity.getManager();
 		this.password = employeeEntity.getPassword();
 		this.created_on = employeeEntity.getCreatedOn();
-		this.record_id = employeeEntity.getRecord_ID();
+		//this.record_id = employeeEntity.getRecord_ID();
 	}
 
 }

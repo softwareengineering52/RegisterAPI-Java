@@ -21,6 +21,7 @@ import edu.uark.models.api.Product;
 @RestController
 @RequestMapping(value = "/api/product")
 public class ProductRestController {
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<Product> getProducts() {
 		return (new ProductsQuery()).execute();

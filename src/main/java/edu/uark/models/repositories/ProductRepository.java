@@ -41,4 +41,10 @@ public class ProductRepository extends BaseRepository<ProductEntity> implements 
 	public ProductRepository() {
 		super(DatabaseTable.PRODUCT);
 	}
+
+	@Override
+	public ProductEntity get(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

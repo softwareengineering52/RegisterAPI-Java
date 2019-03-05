@@ -12,7 +12,7 @@ import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 public class EmployeeQuery implements ResultCommandInterface<Employee> {
 	@Override
 	public Employee execute() {
-		EmployeeEntity employeeEntity = this.employeeRepository.get(this.employeeId);
+		EmployeeEntity employeeEntity = this.employeeRepository.get(this.employee_id);
 		if (employeeEntity != null) {
 			return new Employee(employeeEntity);
 		} else {
@@ -21,12 +21,12 @@ public class EmployeeQuery implements ResultCommandInterface<Employee> {
 	}
 
 	//Properties
-	private UUID employeeId;
-	public UUID getEmployeeId() {
-		return this.employeeId;
+	private int employee_id;
+	public int getEmployee_ID() {
+		return this.employee_id;
 	}
-	public EmployeeQuery setEmployeeId(UUID employeeId) {
-		this.employeeId = employeeId;
+	public EmployeeQuery setEmployee_ID(int employee_id) {
+		this.employee_id = employee_id;
 		return this;
 	}
 	

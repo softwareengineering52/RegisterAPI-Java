@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.uark.commands.employees.EmployeeByLookupCodeQuery;
+import edu.uark.commands.employees.EmployeeByRecordIDQuery;
 import edu.uark.commands.employees.EmployeeCreateCommand;
 import edu.uark.commands.employees.EmployeeDeleteCommand;
 import edu.uark.commands.employees.EmployeeQuery;
@@ -28,43 +28,43 @@ public class EmployeeRestController {
 		return (new EmployeesQuery()).execute();
 	}
 
-	@RequestMapping(value = "/{employeeId}", method = RequestMethod.GET)
-	public Employee getEmployee(@PathVariable UUID employeeId) {
+	@RequestMapping(value = "/{employee_id}", method = RequestMethod.GET)
+	public Employee getEmployee(@PathVariable int employee_id) {
 		return (new EmployeeQuery()).
-			setEmployeeId(employeeId).
+			setEmployee_ID(employee_id).
 			execute();
 	}
-	
+
 	@RequestMapping(value = "/byrecordid/{employeeRecordID}", method = RequestMethod.GET)
-	public Employee getEmployeeByRecordID(@PathVariable String employeeRecordID) {
+	public Employee getEmployeeByRecordID(@PathVariable UUID employeeRecordID) {
 		return (new EmployeeByRecordIDQuery()).
-			setRecordID(employeeRecordID).
+			setRecord_ID(employeeRecordID).
 			execute();
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public Employee createEmployee(@RequestBody Employee employee) {
 		return (new EmployeeCreateCommand()).
 			setApiEmployee(employee).
 			execute();
 	}
-	
-	@RequestMapping(value = "/{employeeId}", method = RequestMethod.PUT)
-	public Employee updateEmployee(@PathVariable UUID employeeId, @RequestBody Employee employee) {
+
+	@RequestMapping(value = "/{employee_id}", method = RequestMethod.PUT)
+	public Employee updateEmployee(@PathVariable int employee_id, @RequestBody Employee employee) {
 		return (new EmployeeUpdateCommand()).
-			setEmployeeId(employeeId).
+			setEmployee_ID(employee_id).
 			setApiEmployee(employee).
 			execute();
 	}
-	
+
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.DELETE)
-	public void deleteEmployee(@PathVariable UUID employeeId) {
+	public void deleteEmployee(@PathVariable int employee_id) {
 		(new EmployeeDeleteCommand()).
-			setEmployeeId(employeeId).
+			setEmployee_ID(employee_id).
 			execute();
 	}
 
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test() {

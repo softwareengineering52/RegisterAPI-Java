@@ -1,6 +1,7 @@
 package edu.uark.models.repositories;
 
 import java.sql.SQLException;
+import java.util.UUID;
 
 import edu.uark.dataaccess.repository.BaseRepository;
 import edu.uark.dataaccess.repository.DatabaseTable;
@@ -14,7 +15,7 @@ import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 
 public class EmployeeRepository extends BaseRepository<EmployeeEntity> implements EmployeeRepositoryInterface {
 	@Override
-	public EmployeeEntity byEmployee_ID(String employee_id) {
+	public EmployeeEntity byRecord_ID(UUID record_id) {
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
@@ -24,9 +25,9 @@ public class EmployeeRepository extends BaseRepository<EmployeeEntity> implement
 					comparison(SQLComparisonType.EQUALS)
 			),
 			(ps) -> {
-				try {
-					ps.setObject(1, employee_id.toLowerCase());
-				} catch (SQLException e) {}
+//				try {
+//					ps.setObject(1, record_id.toLowerCase());
+//				} catch (SQLException e) {}
 
 				return ps;
 			}
@@ -40,5 +41,11 @@ public class EmployeeRepository extends BaseRepository<EmployeeEntity> implement
 	
 	public EmployeeRepository() {
 		super(DatabaseTable.EMPLOYEE);
+	}
+
+	@Override
+	public EmployeeEntity get(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

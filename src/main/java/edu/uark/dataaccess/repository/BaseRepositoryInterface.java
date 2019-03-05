@@ -10,6 +10,7 @@ import edu.uark.dataaccess.entities.BaseEntity;
 public interface BaseRepositoryInterface<T extends BaseEntity<T>> {
 	int count();
 	T get(UUID id);
+	T get(int id);
 	Collection<T> all();
 	boolean exists(UUID id);
 	String getPrimaryTableName();

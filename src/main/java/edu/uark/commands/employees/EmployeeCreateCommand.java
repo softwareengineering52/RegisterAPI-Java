@@ -1,6 +1,7 @@
 package edu.uark.commands.employees;
 
 import org.apache.commons.lang3.StringUtils;
+import java.util.UUID;
 
 import edu.uark.commands.ResultCommandInterface;
 import edu.uark.controllers.exceptions.ConflictException;
@@ -16,13 +17,13 @@ public class EmployeeCreateCommand implements ResultCommandInterface<Employee> {
 	@Override
 	public Employee execute() {
 		//Validations
-		if (StringUtils.isBlank(this.apiEmployee.getRecordID())) {
-			throw new UnprocessableEntityException("recordid");
-		}
+//		if (StringUtils.isBlank(this.apiEmployee.getRecord_ID())) {
+//			throw new UnprocessableEntityException("record_id");
+//		}
 
-		EmployeeEntity employeeEntity = this.employeeRepository.byRecordID(this.apiEmployee.getRecordID());
+		EmployeeEntity employeeEntity = this.employeeRepository.byRecord_ID(this.apiEmployee.getRecord_ID());
 		if (employeeEntity != null) {
-			throw new ConflictException("recordid"); //recordid already defined for another employee.
+			throw new ConflictException("record_id"); //record_id already defined for another employee.
 		}
 		
 		//No ENTITY object was returned from the database, thus the API object's recordid must be unique.
