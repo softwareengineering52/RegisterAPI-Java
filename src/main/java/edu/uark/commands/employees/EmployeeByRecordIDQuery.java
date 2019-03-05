@@ -12,7 +12,7 @@ import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 
 
 // 2.4 (3)
-public class EmployeeByRecordIDQuery implements ResultCommandInterface<Product> {
+public class EmployeeByRecordIDQuery implements ResultCommandInterface<Employee> {
 	@Override
 	public Employee execute() {
 		if (StringUtils.isBlank(this.recordID)) {

@@ -6,57 +6,57 @@ import java.time.LocalDateTime;
 import edu.uark.models.entities.EmployeeEntity;
 
 public class Employee {
-	private String firstname;
-	public String getfirstname() {
-		return this.firstname;
+	private String first_name;
+	public String getFirstName() {
+		return this.first_name;
 	}
-	public Employee setfirstname(String firstname) {
-		this.firstname = firstname;
+	public Employee setFirstName(String first_name) {
+		this.first_name = first_name;
 		return this;
 	}
 
-	private String lastname;
-	public String getlastname() {
-		return this.lastname;
+	private String last_name;
+	public String getLastName() {
+		return this.last_name;
 	}
-	public Employee setlastname(String lastname) {
-		this.lastname = lastname;
+	public Employee setlastname(String last_name) {
+		this.last_name = last_name;
 		return this;
 	}
 
 	private int record_id;
-	public int getrecord_id() {
+	public int getRecord_ID() {
 		return this.record_id;
 	}
-	public Employee setrecord_id(int record_id) {
+	public Employee setRecord_Id(int record_id) {
 		this.record_id = record_id;
 		return this;
 	}
 	
 	private int employee_id;
-	public int getemployee_id() {
+	public int getEmployee_ID() {
 		return this.employee_id;
 	}
-	public Employee setemployee_id(int employee_id) {
+	public Employee setEmployee_ID(int employee_id) {
 		this.employee_id = employee_id;
 		return this;
 	}
 
 	private String active_inactive;
-	public String getactive_inactive() {
+	public String getActive_Inactive() {
 		return this.active_inactive;
 	}
-	public Employee setactive_inactive(String active_inactive) {
+	public Employee setActive_Inactive(String active_inactive) {
 		this.active_inactive = active_inactive;
 		return this;
 	}
 
-	private LocalDateTime createdOn;
+	private LocalDateTime created_on;
 	public LocalDateTime getCreatedOn() {
-		return this.createdOn;
+		return this.created_on;
 	}
-	public Employee setCreatedOn(LocalDateTime createdOn) {
-		this.createdOn = createdOn;
+	public Employee setCreatedOn(LocalDateTime created_on) {
+		this.created_on = created_on;
 		return this;
 	}
 
@@ -83,21 +83,23 @@ public class Employee {
 		this.record_id = -1;
 		this.active_inactive = "";
 		this.password = "";
-		this.firstname = "";
-		this.lastname = "";
+		this.first_name = "";
+		this.last_name = "";
 		this.manager = "";
-		this.createdOn = LocalDateTime.now();
+		this.created_on = LocalDateTime.now();
 	}
 	
 	public Employee(EmployeeEntity employeeEntity) {
-		this.record_id = employeeEntity.getrecord_id();
-		this.employee_id = employeeEntity.getemployee_id();
-		this.createdOn = employeeEntity.getCreatedOn();
-		this.password = employeeEntity.getPassword();
-		this.firstname = employeeEntity.getfirstname();
-		this.lastname = employeeEntity.getlasttname();
+		this.first_name = employeeEntity.getFirstName();
+		this.last_name = employeeEntity.getLastName();
+		this.employee_id = employeeEntity.getEmployee_ID();
+		this.active_inactive = employeeEntity.getActive_Inactive();
 		this.manager = employeeEntity.getManager();
+		this.password = employeeEntity.getPassword();
+		this.created_on = employeeEntity.getCreatedOn();
+		this.record_id = employeeEntity.getRecord_ID();
 	}
+
 }
 
 
