@@ -19,7 +19,7 @@ public class Employee {
 	public String getLastName() {
 		return this.last_name;
 	}
-	public Employee setlastname(String last_name) {
+	public Employee setLastName(String last_name) {
 		this.last_name = last_name;
 		return this;
 	}
@@ -80,12 +80,13 @@ public class Employee {
 	
 	public Employee() {
 		this.employee_id = -1;
-		this.record_id = null;
+		this.record_id = new UUID(0,0);
 		this.active_inactive = "";
 		this.password = "";
 		this.first_name = "";
 		this.last_name = "";
 		this.manager = "";
+		this.record_id = new UUID(0,0);
 		this.created_on = LocalDateTime.now();
 	}
 	
@@ -97,7 +98,7 @@ public class Employee {
 		this.manager = employeeEntity.getManager();
 		this.password = employeeEntity.getPassword();
 		this.created_on = employeeEntity.getCreatedOn();
-		//this.record_id = employeeEntity.getRecord_ID();
+		this.record_id = employeeEntity.getRecord_ID();
 	}
 
 }

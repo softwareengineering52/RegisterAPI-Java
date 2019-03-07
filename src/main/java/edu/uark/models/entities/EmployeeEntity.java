@@ -12,6 +12,7 @@ import edu.uark.dataaccess.entities.BaseEntity;
 import edu.uark.dataaccess.repository.DatabaseTable;
 import edu.uark.models.api.Employee;
 import edu.uark.models.entities.fieldnames.EmployeeFieldNames;
+import edu.uark.models.entities.fieldnames.ProductFieldNames;
 
 public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 	@Override
@@ -23,7 +24,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		this.manager = rs.getString(EmployeeFieldNames.MANAGER);
 		this.password = rs.getString(EmployeeFieldNames.PASSWORD);
 		//this.created_on = rs.getString(EmployeeFieldNames.CREATED_ON);
-		//this.record_id = rs.get(EmployeeFieldNames.RECORD_ID);
+		//this.record_id = rs.getInt(EmployeeFieldNames.RECORD_ID);
 		
 	}
 
@@ -44,17 +45,27 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 	public String getFirstName() {
 		return this.first_name;
 	}
+	public EmployeeEntity setFirstName(String first_name) {
+		if (!StringUtils.equals(this.first_name, first_name)) {
+			this.first_name = first_name;
+			this.propertyChanged(EmployeeFieldNames.FIRST_NAME);
+		}
+		return this;
+	}
 	private String last_name;
 	public String getLastName() {
 		return this.last_name;
 	}
+	public EmployeeEntity setLastName(String last_name) {
+		if (!StringUtils.equals(this.last_name, last_name)) {
+			this.last_name = last_name;
+			this.propertyChanged(EmployeeFieldNames.LAST_NAME);
+		}
+		return this;
+	}
 	private int employee_id;
 	public int getEmployee_ID() {
 		return this.employee_id;
-	}
-	private String active_inactive;
-	public String getActive_Inactive() {
-		return this.active_inactive;
 	}
 	public EmployeeEntity setEmployee_ID(int employee_id) {
 		if (this.employee_id != employee_id) {
@@ -64,11 +75,45 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		
 		return this;
 	}
-
-//	private UUID record_id;
-//	public UUID getRecord_ID() {
-//		return this.record_id;
-//	}
+	private String active_inactive;
+	public String getActive_Inactive() {
+		return this.active_inactive;
+	}
+	public EmployeeEntity setActive_Inactive(String active_inactive) {
+		if (!StringUtils.equals(this.active_inactive, active_inactive)) {
+			this.active_inactive = active_inactive;
+			this.propertyChanged(EmployeeFieldNames.ACTIVE_INACTIVE);
+		}
+		return this;
+	}
+	private String manager;
+	public String getManager() {
+		return this.manager;
+	}
+	public EmployeeEntity setManager(String manager) {
+		if (!StringUtils.equals(this.manager, manager)) {
+			this.manager = manager;
+			this.propertyChanged(EmployeeFieldNames.MANAGER);
+		}
+		return this;
+	}
+	
+	private String password;
+	public String getPassword() {
+		return this.password;
+	}
+	public EmployeeEntity setPassword(String password) {
+		if (!StringUtils.equals(this.password, password)) {
+			this.password = password;
+			this.propertyChanged(EmployeeFieldNames.PASSWORD);
+		}
+		return this;
+	}
+//Change back if it doesnt work
+	private UUID record_id;
+	public UUID getRecord_ID() {
+		return this.record_id;
+	}
 //	public EmployeeEntity setRecord_ID(UUID record_id) {
 //		if (this.record_id != record_id) {
 //			this.record_id = record_id;
@@ -78,25 +123,23 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 //		return this;
 //	}
 
-	private String password;
-	public String getPassword() {
-		return this.password;
-	}
-	private String manager;
-	public String getManager() {
-		return this.manager;
-	}
 	
 	public Employee synchronize(Employee apiEmployee) {
+	
 		this.setFirstName(apiEmployee.getFirstName());
-		
-		apiEmployee.setRecord_ID(this.getRecord_ID());
-		
+		this.setLastName(apiEmployee.getLastName());
+		this.setEmployee_ID(apiEmployee.getEmployee_ID());
+		this.setActive_Inactive(apiEmployee.getActive_Inactive());
+		this.setManager(apiEmployee.getManager());
+		this.setPassword(apiEmployee.getPassword());
 		apiEmployee.setCreatedOn(this.getCreatedOn());
-		//this.setCreatedOn(this.getCreatedOn());
+		apiEmployee.setRecord_ID(this.getRecord_ID());
+	
+		
+	
 		return apiEmployee;
 	}
-
+	
 	public EmployeeEntity() {
 		super(DatabaseTable.EMPLOYEE);
 		this.first_name = StringUtils.EMPTY;
@@ -106,7 +149,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		this.manager = StringUtils.EMPTY;
 		this.password = StringUtils.EMPTY;
 		//this.created_on = StringUtils.EMPTY;
-		//this.record_id = null;		
+		//this.record_id = -1;		
 		
 	}
 	
@@ -120,6 +163,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		this.manager = apiEmployee.getManager();
 		this.password = apiEmployee.getPassword();
 		//this.created_on = apiEmployee.getCreatedOn();
+		//change it back if this doesn't work
 		//this.record_id = apiEmployee.getRecord_ID();
 	}
 }
